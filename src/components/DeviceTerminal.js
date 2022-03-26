@@ -57,6 +57,10 @@ export default function DeviceTerminal(props) {
         response.data.data.sort().forEach(e => concatToTerminal(e));
     }
 
+    const succesfulFind = (response) => {
+        response.data.data.sort().forEach(e => concatToTerminal(e));
+    }
+
     const failed = (error) => {
         console.log(error);
     }
@@ -90,11 +94,12 @@ export default function DeviceTerminal(props) {
         }
         else if (value.startsWith('touch')) {
             let touchParams = value.split(' ');
-            postTouch({path: touchParams[1]});
+            postTouch({path: touchParams[1]}, succesful, failed);
         }
         else if (value.startsWith('find')) {
             let findParams = value.split(' ');
-            getFind({path: findParams[1]});
+            console.log(findParams);
+            getFind({name: findParams[1]}, succesfulFind, failed);
         }
         else if (value.startsWith('mkdir')) {
             let mkdirParams = value.split(' ');
