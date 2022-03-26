@@ -28,7 +28,7 @@ export default function LoginPage() {
     async function signInWithGoogle() {
         try {
             await loginWithGoogle();
-            navigate('/');
+            navigate('/home');
         } catch (error) {
             navigate('/login');
             setError('Failed to login with google');
