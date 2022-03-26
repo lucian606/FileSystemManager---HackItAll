@@ -9,6 +9,7 @@ import DeviceDetails from './components/DeviceDetails';
 import DeviceTerminal from './components/DeviceTerminal';
 import DeviceGUI from './components/DeviceGUI';
 import Login from './components/Login';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 // import { AuthProvider } from './contexts/AuthContext';
 
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <h1>Header</h1>
+      {/* <Navbar/> */}
       <Routes>
         <Route path='/details' element={<DeviceDetails/>} />
         <Route path='/terminal/:id' element={<DeviceTerminal/>}/>
@@ -36,7 +37,6 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/' element={<Dashboard/>}/>
       </Routes>
-      <h1>Footer</h1>
     </BrowserRouter>
   )
 }
