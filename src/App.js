@@ -5,7 +5,6 @@ import './App.css';
 // import SubjectGeneratorPage from './components/SubjectGeneratorPage';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
-import DeviceDetails from './components/DeviceDetails';
 import DeviceTerminal from './components/DeviceTerminal';
 import DeviceGUI from './components/DeviceGUI';
 import Login from './components/Login';
@@ -31,7 +30,6 @@ function App() {
     <BrowserRouter>
       {/* <Navbar/> */}
       <Routes>
-        <Route path='/details' element={<DeviceDetails/>} />
         <Route path='/terminal/:id' element={<DeviceTerminal/>}/>
         <Route path='/gui/:id' element={<DeviceGUI/>}/>
         <Route path='/login' element={<Login/>}/>

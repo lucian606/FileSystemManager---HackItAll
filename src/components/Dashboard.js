@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import NetworkItem from './NetworkItem';
+import Networks from './Networks';
+import Agents from './Agents';
 import { database } from "../firebase";
 
 export default function Dashboard() {
 
-    const [option, setOption] = useState('');
+    const [option, setOption] = useState('n');
     const [networks, setNetworks] = useState([]);
+    const [selectedNetwork, setSelectedNetwork] = useState(null);
     const [agents, setAgents] = useState([]);
 
     const demoNetwork = {
@@ -46,19 +48,27 @@ export default function Dashboard() {
         console.log('Network chosen');
     }
 
+    const getDashboardScreen = () => {
+        switch (option) {
+            case 'n':
+                return (<Networks networks={networks} agents={agents}/>);
+            case 'a':
+                return (<Agents agents={agents} selectedNetwork={null}/>);
+            default:
+                return (<Networks networks={networks}/>);
+        }
+    }
+
     return (
         <div className="w-full flex h-screen">
-            <div className="w-1/4 bg-zinc-100 p-2">
-                <div className="mt-6 text-lg font-medium">SegFault IoT Manager</div>
-                <div className='cursor-pointer' onClick={() => setOption('n')}>Networks</div>
-                <div className='cursor-pointer' onClick={() => setOption('d')}>Devices</div>
-                <div className='cursor-pointer' onClick={() => setOption('r')}>Reports</div>
+            <div className="w-1/5 bg-zinc-100 p-2">
+                <div className="mt-6 text-xl font-medium mb-4">SegFault IoT Manager</div>
+                <div className='cursor-pointer text-lg mb-1 hover:bg-gray-200' onClick={() => setOption('n')}>Networks</div>
+                <div className='cursor-pointer text-lg mb-1 hover:bg-gray-200' onClick={() => setOption('a')}>Agents</div>
+                <div className='cursor-pointer text-lg mb-1 hover:bg-gray-200' onClick={() => setOption('r')}>Reports</div>
+                <div className='cursor-pointer text-lg mb-1 hover:bg-gray-200' onClick={() => setOption('r')}>Log out</div>
             </div>
-            <div className="w-3/4 bg-zinc-50 flex flex-wrap">
-                <NetworkItem name="Home network"/>
-                <NetworkItem name="Office network"/>
-                <NetworkItem name="School network"/>
-            </div>
+            {getDashboardScreen()}
         </div>
     );
 }

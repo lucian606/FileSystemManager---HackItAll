@@ -103,7 +103,7 @@ export default function DeviceTerminal(props) {
     }
 
     return (
-        <div className="bg-background rounded-lg text-lg h-96 px-4 pt-4 pb-16 m-6 overflow-y-auto bg-black text-green-500" ref={terminalBody}>
+        <div className="bg-background rounded-b-lg text-lg h-96 px-4 pt-4 pb-16 m-6 overflow-y-auto bg-black text-green-500" ref={terminalBody}>
             { history.map((x) => (
                 <div>
                     <span>{x}</span>

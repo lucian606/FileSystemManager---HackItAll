@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-export const domain = 'http://127.0.0.1:5001';
+export const domain = 'http://192.168.238.118:5001/';
 export const getDefaultRoute = '/';
 export const getLsRoute = '/ls';
 export const postMkdirRoute = '/mkdir';
@@ -10,6 +10,89 @@ export const postTouchRoute = '/touch';
 export const getFindRoute = '/find';
 export const postCdRoute = '/cd';
 export const getPsRoute = '/ps';
+
+export const blockchainCreateWallet = '/createWallet';
+export const blockchainMine = '/mine';
+export const blockchainGet = '/get';
+export const blockchainGetDeviceName = '/get/device/name';
+export const blockchainPutDeviceData = '/put/device/data';
+
+export function postBlockchainCreateWallet(params, success, failure) {
+    axios({
+        method: 'post',
+        url: `${domain}${blockchainCreateWallet}`,
+        data: JSON.stringify(params),
+        headers: {
+          'content-type': 'application/json; charset=utf-8'
+        }
+  })
+  .then((response) => {
+      success(response);
+  }, (error) => {
+      failure(error);
+  });
+}    
+export function postBlockchainMine(params, success, failure) {
+    axios({
+        method: 'post',
+        url: `${domain}${blockchainMine}`,
+        data: JSON.stringify(params),
+        headers: {
+          'content-type': 'application/json; charset=utf-8'
+        }
+  })
+  .then((response) => {
+      success(response);
+  }, (error) => {
+      failure(error);
+  });
+}
+export function postBlockchainGet(params, success, failure) {
+    axios({
+        method: 'post',
+        url: `${domain}${blockchainGet}`,
+        data: JSON.stringify(params),
+        headers: {
+          'content-type': 'application/json; charset=utf-8'
+        }
+  })
+  .then((response) => {
+      success(response);
+  }, (error) => {
+      failure(error);
+  });
+}
+export function postBlockchainGetDeviceName(params, success, failure) {
+    axios({
+        method: 'post',
+        url: `${domain}${blockchainGetDeviceName}`,
+        data: JSON.stringify(params),
+        headers: {
+            'content-type': 'application/json; charset=utf-8'
+        }
+    })
+    .then((response) => {
+        success(response);
+    }, (error) => {
+        failure(error);
+    });
+}
+export function postBlockchainPutDeviceData(params, success, failure) {
+    axios({
+        method: 'post',
+        url: `${domain}${blockchainPutDeviceData}`,
+        data: JSON.stringify(params),
+        headers: {
+            'content-type': 'application/json; charset=utf-8'
+        }
+    })
+    .then((response) => {
+        success(response);
+    }, (error) => {
+        failure(error);
+    });
+}
+
 
 export function getDefault(success, failure) {
     axios({
@@ -22,7 +105,6 @@ export function getDefault(success, failure) {
         failure(error);
     });
 }
-
 export function getLs(success, failure) {
     console.log('Performing getLs');
     axios({
@@ -35,7 +117,6 @@ export function getLs(success, failure) {
         failure(error);
     });
 }
-
 export function postMkdir(mkdirParams, success, failure) {
     axios({
           method: 'post',
@@ -51,7 +132,6 @@ export function postMkdir(mkdirParams, success, failure) {
         failure(error);
     });
 }
-
 export function getPwd(success, failure) {
     axios({
         method: 'get',
@@ -63,7 +143,6 @@ export function getPwd(success, failure) {
         failure(error);
     });
 }
-
 export function postCd(cdParams, success, failure) {
     axios({
           method: 'post',
@@ -79,7 +158,6 @@ export function postCd(cdParams, success, failure) {
         failure(error);
     });
 }
-
 export function getCat(catParams, success, failure) {
     axios({
         method: 'post',
@@ -95,7 +173,6 @@ export function getCat(catParams, success, failure) {
         failure(error);
     });
 }
-
 export function postTouch(touchParams, success, failure) {
     axios({
         method: 'post',
@@ -111,7 +188,6 @@ export function postTouch(touchParams, success, failure) {
         failure(error);
     });
 }
-
 export function getFind(findParams, success, failure) {
     axios({
         method: 'post',
@@ -127,7 +203,6 @@ export function getFind(findParams, success, failure) {
         failure(error);
     });
 }
-
 export function getPs(success, failure) {
     axios({
         method: 'get',
