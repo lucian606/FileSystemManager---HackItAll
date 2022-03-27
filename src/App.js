@@ -7,7 +7,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import DeviceTerminal from './components/DeviceTerminal';
 import DeviceGUI from './components/DeviceGUI';
-import Login from './components/Login';
+import LoginPage from './components/LoginPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 // import { AuthProvider } from './contexts/AuthContext';
@@ -23,16 +23,16 @@ function App() {
   //         <Route path='/something' element={<SubjectGeneratorPage/>} />      
   //       </Routes>
   //     </AuthProvider>
-  //   </BrowserRouter>
+  //   </BrowserRouter> 
   // );
 
   return (
     <BrowserRouter>
-      {/* <Navbar/> */}
+      <Navbar/>
       <Routes>
-        <Route path='/terminal/:id' element={<DeviceTerminal/>}/>
-        <Route path='/gui/:id' element={<DeviceGUI/>}/>
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/terminal' element={<DeviceTerminal/>}/>
+        <Route path='/gui' element={<DeviceGUI/>}/>
+        {/* <Route path='/login' element={<LoginPage/>}/> */}
         <Route path='/' element={<Dashboard/>}/>
       </Routes>
     </BrowserRouter>

@@ -78,8 +78,9 @@ export default function DeviceTerminal(props) {
         if (value === 'clear') {
             clearTerminal();
         }
-        else if (value === 'ls') {
-            handleGetLs();
+        else if (value.startsWith('ls')) {
+            let lsParams = value.split(' ');
+            getLs({path: lsParams[1]}, succesful, failed);
         }
         else if (value === 'pwd') {
             handleGetPwd();
@@ -105,27 +106,34 @@ export default function DeviceTerminal(props) {
             let mkdirParams = value.split(' ');
             handlePostMkdir({path: mkdirParams[1]});
         }
+        else if (value.startsWith('ps')) {
+            let psParams = value.split(' ');
+            getPs({sortBy: psParams[1]},succesful, failed);
+        }
     }
 
     return (
-        <div className="bg-background rounded-b-lg text-lg h-96 px-4 pt-4 pb-16 m-6 overflow-y-auto bg-black text-green-500" ref={terminalBody}>
-            { history.map((x) => (
-                <div>
-                    <span>{x}</span>
+        <div>
+            <div className="bg-background text-lg h-8 pt-4 ml-6 mr-6 mt-8 overflow-y-auto bg-gray-900"></div>
+            <div className="bg-background rounded-b-lg text-lg h-96 px-4 pt-4 pb-16 mr-6 ml-6 overflow-y-auto bg-black text-green-500" ref={terminalBody}>
+                { history.map((x) => (
+                    <div>
+                        <span>{x}</span>
+                    </div>
+                ))}
+                <div className="flex">
+                    {userPrefix}
+                    <input
+                        type="text"
+                        className="flex-1 block w-full bg-background text-foreground ml-2 bg-black outline-none"
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                                submitCode(e.target.value);
+                                e.target.value = '';
+                            }
+                        }}
+                    />
                 </div>
-            ))}
-            <div className="flex">
-                {userPrefix}
-                <input
-                    type="text"
-                    className="flex-1 block w-full bg-background text-foreground ml-2 bg-black outline-none"
-                    onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
-                            submitCode(e.target.value);
-                            e.target.value = '';
-                        }
-                    }}
-                />
             </div>
         </div>
     );

@@ -1,0 +1,1 @@
+export const coconut = "coconut is a big big nut";

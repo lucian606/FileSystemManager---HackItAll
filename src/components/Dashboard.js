@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Networks from './Networks';
 import Agents from './Agents';
+import Reports from './Reports';
 import { database } from "../firebase";
 
 export default function Dashboard() {
@@ -9,10 +10,6 @@ export default function Dashboard() {
     const [networks, setNetworks] = useState([]);
     const [selectedNetwork, setSelectedNetwork] = useState(null);
     const [agents, setAgents] = useState([]);
-
-    const demoNetwork = {
-        
-    }
 
     // fetching networks...
     useEffect(() => {
@@ -44,18 +41,28 @@ export default function Dashboard() {
         fetchAgents();
     }, []);
 
-    const handleNetwork = (e) => {
-        console.log('Network chosen');
+    const handleSelectNetwork = (value) => {
+        console.log(value);
+        setSelectedNetwork(value);
     }
 
+    useEffect(() => {
+        if (selectedNetwork) {
+            setOption('a');
+        }
+    }, [selectedNetwork]);
+
     const getDashboardScreen = () => {
+        console.log('dasd')
         switch (option) {
             case 'n':
-                return (<Networks networks={networks} agents={agents}/>);
+                return (<Networks networks={networks} agents={agents} selectNetwork={handleSelectNetwork}/>);
             case 'a':
-                return (<Agents agents={agents} selectedNetwork={null}/>);
+                return (<Agents agents={agents} selectedNetwork={selectedNetwork}/>);
+            case 'r':
+                return (<Reports/>);
             default:
-                return (<Networks networks={networks}/>);
+                return (<Networks networks={networks} agents={agents} selectNetwork={handleSelectNetwork}/>);
         }
     }
 
